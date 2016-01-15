@@ -2,7 +2,10 @@ CREATE USER has_many_user;
 
 CREATE DATABASE has_many_blogs WITH OWNER = has_many_user;
 
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
   ID SERIAL PRIMARY KEY NOT NULL,
@@ -28,6 +31,6 @@ CREATE TABLE comments (
   body character varying(510) DEFAULT NULL,
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now(),
-  posts_id INT references posts(id),
+  posts_id INT references posts(ID),
   user_id INT references users(ID)
 );
